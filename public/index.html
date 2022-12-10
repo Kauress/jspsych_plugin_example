@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animations study</title>
+    <link rel="stylesheet" href="jspsych/jspsych.css" />
+
+    <!--instructions-->
+    <script src="jspsych/jspsych.js"></script>
+    <script src="runtime/psyanim-runtime.js"> </script>
+    <script src="jspsych/plugin-psyanim-runtime.js"></script>
+
+</head>
+
+<body>
+  <script>
+    var jsPsych = initJsPsych({
+      adapt_to_file_protocol: false,
+      override_safe_mode: true,
+      show_progress_bar: true
+    });
+
+
+    timeline_temp = [];
+
+    timeline_temp.push({
+      type: jsPsychPsyanimRuntime,
+      psynFileUrl: "./files/data.psyn",
+      trialDuration: 3000,
+      html: `
+        <h1> Observe the animation below: </h1>
+
+        <!-- we place this tag here to put the psyanim runtime in it -->
+        <div id="animation-holder"> </div> 
+
+        <div> 
+          <h2> Instructions: </h2>  
+          <hr> </hr>
+          <p> 
+            Pay close attention to the shapes and the interaction that occurs between them
+          </p>
+        </div>
+      `,
+
+      // the ID of the tag in which to put the psyanim runtime
+      animationHolderId: 'animation-holder'
+    });
+
+    jsPsych.run(timeline_temp)
+  </script>
+</body>
+</html>
